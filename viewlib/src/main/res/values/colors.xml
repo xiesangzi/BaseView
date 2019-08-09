@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Appbar背景色-->
+    <color name="colorPrimary">#117eff</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark">#00FFFFFF</color>
+    <!--控制各个控件被选中时的颜色-->
+    <color name="colorAccent">#F44336</color>
+
+    <color name="blackbb">#bbbbbb</color>
+
+    <color name="guide_anim">#3e80fc</color>
+    <color name="remind_color">#f54949</color>
+    <color name="text_color">#ffffff</color>
+    <color name="progress_color">#41A2A0A0</color>
+</resources>
