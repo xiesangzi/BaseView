@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
         tools:text="无网络连接，请检查您的网络..."
         tools:textColor="#666666"
         tools:textSize="16sp" />

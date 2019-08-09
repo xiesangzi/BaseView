@@ -234,7 +234,7 @@ public class LoadingLayout extends FrameLayout {
         return this;
     }
 
-    public void autoRefresh() {
+    public void refresh() {
         Runnable runnable = () -> {
             changeVIew(mLoadingResId);
             if (onRefreshListener != null && mLayouts.containsKey(mLoadingResId)) {
@@ -270,14 +270,21 @@ public class LoadingLayout extends FrameLayout {
         Runnable runnable = () -> {
             changeVIew(layoutId);
         };
-        this.postDelayed(runnable, 500);
+        this.postDelayed(runnable, 30);
     }
 
     private void changeVIew(int layoutId) {
         for (View view : mLayouts.values()) {
             view.setVisibility(GONE);
         }
-        getLayout(layoutId).setVisibility(VISIBLE);
+        View view = getLayout(layoutId);
+        view.setVisibility(VISIBLE);
+        if (layoutId == mLoadingResId) {
+            getLayout(mContentId).setVisibility(VISIBLE);
+            view.setOnTouchListener((v, event) -> true);
+        } else {
+            view.setOnTouchListener(null);
+        }
     }
 
     private void remove(int layoutId) {
