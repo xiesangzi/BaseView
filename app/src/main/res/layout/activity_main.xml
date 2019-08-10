@@ -17,4 +17,39 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.yhms.view.form.EditTextWithLabel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:form_background="@color/white"
+        app:form_edit_hint="请输入姓名"
+        app:form_edit_size="@dimen/sp_16"
+        app:form_icon_right="@mipmap/ic_launcher_round"
+        app:form_label="姓名"
+        app:form_require="false" />
+
+    <com.yhms.view.form.EditTextWithLabel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        app:form_background="@color/white"
+        app:form_direction="horizontal"
+        app:form_edit_hint="请输入出生年月"
+        app:form_edit_size="@dimen/sp_16"
+        app:form_enabled="true"
+        app:form_label="出生年月"
+        app:form_require="true" />
+
+    <com.yhms.view.form.EditTextWithLabel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        app:form_background="@color/white"
+        app:form_direction="vertical"
+        app:form_edit_height="100dp"
+        app:form_edit_hint="请输入你的工作经历"
+        app:form_edit_size="@dimen/sp_16"
+        app:form_label="工作经历"
+        app:form_require="true" />
+
 </LinearLayout>

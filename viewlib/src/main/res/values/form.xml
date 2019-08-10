@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FormView">
+        <!--输入框类型select，input-->
+
+        <attr name="form_direction" format="enum">
+            <enum name="vertical" value="1" />
+            <enum name="horizontal" value="2" />
+        </attr>
+        <!--是否启用-->
+        <attr name="form_enabled" format="boolean" />
+        <!--背景颜色-->
+        <attr name="form_background" format="reference" />
+        <!--背景颜色-->
+        <attr name="form_icon_right" format="reference" />
+
+        <!--是否必填-->
+        <attr name="form_require" format="boolean" />
+
+        <!--label名称-->
+        <attr name="form_label" format="string" />
+        <!--label字体颜色-->
+        <attr name="form_label_color" format="color" />
+        <!--label字体大小dp-->
+        <attr name="form_label_size" format="dimension" />
+
+        <!--输入框提示信息-->
+        <attr name="form_edit_hint" format="string" />
+        <!--输入框字体大小dp-->
+        <attr name="form_edit_color" format="color" />
+        <!--输入框字体大小dp-->
+        <attr name="form_edit_size" format="dimension" />
+        <attr name="form_edit_height" format="dimension" />
+    </declare-styleable>
+</resources>

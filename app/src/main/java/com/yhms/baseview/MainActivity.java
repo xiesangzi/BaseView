@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 protected Void doInBackground(Void... voids) {
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(1000);
                     } catch (Exception e) {
 
                     }
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 protected void onPostExecute(Void aVoid) {
                     super.onPostExecute(aVoid);
-                    vLoading.finishRefreshNoData();
+                    vLoading.finishRefresh();
                 }
             }.execute();
 

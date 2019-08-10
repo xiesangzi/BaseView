@@ -3,9 +3,34 @@
     <!--Appbar背景色-->
     <color name="colorPrimary">#117eff</color>
     <!--状态栏颜色-->
-    <color name="colorPrimaryDark">#00FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <!--控制各个控件被选中时的颜色-->
     <color name="colorAccent">#F44336</color>
+    <!--页面背景色-->
+    <color name="colorBackground">#f2f2f2</color>
+    <!--底部导航栏颜色-->
+    <color name="navigationBarColor">#f9fafc</color>
+
+    <!--ToolBar上的Title颜色-->
+    <color name="textColorPrimary">#2C2F3E</color>
+    <!--各个控制控件的默认颜色-->
+    <color name="colorControlNormal">#C0CCD7</color>
+
+    <!--一级信息、标题、主要文字-->
+    <color name="h1">#202840</color>
+    <!--次要信息、辅助文字-->
+    <color name="h2">#767981</color>
+    <!--普通级别文字、正文文字-->
+    <color name="h3">#5C6273</color>
+
+    <!--分割线、按钮边框-->
+    <color name="frame">#F0F1F2</color>
+    <!--底层背景、聊天气泡、输入框-->
+    <color name="box">#F7F8FA</color>
+
+    <color name="white">#ffffff</color>
+    <color name="blue">#3BA6FC</color>
+    <color name="transparent">#00000000</color>
 
     <color name="blackbb">#bbbbbb</color>
 
