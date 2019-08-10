@@ -282,4 +282,9 @@ public class EditTextWithLabel extends LinearLayout {
         this.formEditHeight = formEditHeight;
         postInvalidate();
     }
+
+    public void setFormIconRight(int formIconRight) {
+        this.formIconRight = formIconRight;
+        postInvalidate();
+    }
 }
