@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yhms.view.LoadingLayout;
+import com.yhms.view.immersionbar.ImmersionBar;
 
 public class MainActivity extends AppCompatActivity {
     LoadingLayout vLoading;
@@ -17,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .transparentNavigationBar()
+                .transparentBar()
+                .fitsSystemWindows(true)
+                .statusBarColor(R.color.colorPrimary)
+                .statusBarDarkFont(true).init();
         vLoading = LoadingLayout.wrap(this);
         vLoading.setOnRefreshListener(refreshLayout -> {
             new AsyncTask<Void, Void, Void>() {

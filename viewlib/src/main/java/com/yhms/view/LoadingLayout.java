@@ -280,7 +280,6 @@ public class LoadingLayout extends FrameLayout {
         View view = getLayout(layoutId);
         view.setVisibility(VISIBLE);
         if (layoutId == mLoadingResId) {
-            getLayout(mContentId).setVisibility(VISIBLE);
             view.setOnTouchListener((v, event) -> true);
         } else {
             view.setOnTouchListener(null);

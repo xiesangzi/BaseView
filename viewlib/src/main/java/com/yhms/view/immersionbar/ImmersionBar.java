@@ -25,6 +25,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.yhms.view.R;
 
@@ -54,7 +55,7 @@ import static com.yhms.view.immersionbar.Constants.IMMERSION_MIUI_STATUS_BAR_DAR
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public final class ImmersionBar implements ImmersionCallback {
 
-    private Activity mActivity;
+    private FragmentActivity mActivity;
     private Fragment mSupportFragment;
     private android.app.Fragment mFragment;
     private Dialog mDialog;
@@ -126,7 +127,7 @@ public final class ImmersionBar implements ImmersionCallback {
      * @param activity the activity
      * @return the immersion bar
      */
-    public static ImmersionBar with(@NonNull Activity activity) {
+    public static ImmersionBar with(@NonNull FragmentActivity activity) {
         return getRetriever().get(activity);
     }
 
@@ -142,17 +143,6 @@ public final class ImmersionBar implements ImmersionCallback {
     }
 
     /**
-     * 在Fragment使用
-     * With immersion bar.
-     *
-     * @param fragment the fragment
-     * @return the immersion bar
-     */
-    public static ImmersionBar with(@NonNull android.app.Fragment fragment) {
-        return getRetriever().get(fragment);
-    }
-
-    /**
      * 在DialogFragment使用
      * With immersion bar.
      *
@@ -164,17 +154,6 @@ public final class ImmersionBar implements ImmersionCallback {
     }
 
     /**
-     * 在DialogFragment使用
-     * With immersion bar.
-     *
-     * @param dialogFragment the dialog fragment
-     * @return the immersion bar
-     */
-    public static ImmersionBar with(@NonNull android.app.DialogFragment dialogFragment) {
-        return getRetriever().get(dialogFragment);
-    }
-
-    /**
      * 在dialog里使用
      * With immersion bar.
      *
@@ -182,7 +161,7 @@ public final class ImmersionBar implements ImmersionCallback {
      * @param dialog   the dialog
      * @return the immersion bar
      */
-    public static ImmersionBar with(@NonNull Activity activity, @NonNull Dialog dialog) {
+    public static ImmersionBar with(@NonNull FragmentActivity activity, @NonNull Dialog dialog) {
         return getRetriever().get(activity, dialog);
     }
 
@@ -192,8 +171,8 @@ public final class ImmersionBar implements ImmersionCallback {
      * @param activity the activity
      * @param dialog   the dialog
      */
-    public static void destroy(@NonNull Activity activity, @NonNull Dialog dialog) {
-        getRetriever().destroy(activity, dialog);
+    public static void destroy(@NonNull FragmentActivity activity, @NonNull Dialog dialog) {
+        getRetriever().get(activity, dialog).destroy();
     }
 
     /**
@@ -202,7 +181,7 @@ public final class ImmersionBar implements ImmersionCallback {
      *
      * @param activity the activity
      */
-    ImmersionBar(Activity activity) {
+    ImmersionBar(FragmentActivity activity) {
         mIsActivity = true;
         mActivity = activity;
         initCommonParameter(mActivity.getWindow());
@@ -223,20 +202,6 @@ public final class ImmersionBar implements ImmersionCallback {
     }
 
     /**
-     * 在Fragment里初始化
-     * Instantiates a new Immersion bar.
-     *
-     * @param fragment the fragment
-     */
-    ImmersionBar(android.app.Fragment fragment) {
-        mIsFragment = true;
-        mActivity = fragment.getActivity();
-        mFragment = fragment;
-        checkInitWithActivity();
-        initCommonParameter(mActivity.getWindow());
-    }
-
-    /**
      * 在dialogFragment里使用
      * Instantiates a new Immersion bar.
      *
@@ -252,28 +217,13 @@ public final class ImmersionBar implements ImmersionCallback {
     }
 
     /**
-     * 在dialogFragment里使用
-     * Instantiates a new Immersion bar.
-     *
-     * @param dialogFragment the dialog fragment
-     */
-    ImmersionBar(android.app.DialogFragment dialogFragment) {
-        mIsDialog = true;
-        mActivity = dialogFragment.getActivity();
-        mFragment = dialogFragment;
-        mDialog = dialogFragment.getDialog();
-        checkInitWithActivity();
-        initCommonParameter(mDialog.getWindow());
-    }
-
-    /**
      * 在Dialog里初始化
      * Instantiates a new Immersion bar.
      *
      * @param activity the activity
      * @param dialog   the dialog
      */
-    ImmersionBar(Activity activity, Dialog dialog) {
+    ImmersionBar(FragmentActivity activity, Dialog dialog) {
         mIsDialog = true;
         mActivity = activity;
         mDialog = dialog;
@@ -2866,8 +2816,8 @@ public final class ImmersionBar implements ImmersionCallback {
         window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    private static RequestManagerRetriever getRetriever() {
-        return RequestManagerRetriever.getInstance();
+    private static RequestManagerFragment getRetriever() {
+        return RequestManagerFragment.getInstance();
     }
 
     private static boolean isEmpty(String str) {

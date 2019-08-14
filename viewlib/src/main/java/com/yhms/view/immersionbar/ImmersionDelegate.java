@@ -8,6 +8,7 @@ import android.view.Surface;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * @author geyifeng
@@ -22,9 +23,9 @@ class ImmersionDelegate implements Runnable {
     private int mNotchHeight;
 
     ImmersionDelegate(Object o) {
-        if (o instanceof Activity) {
+        if (o instanceof FragmentActivity) {
             if (mImmersionBar == null) {
-                mImmersionBar = new ImmersionBar((Activity) o);
+                mImmersionBar = new ImmersionBar((FragmentActivity) o);
                 mStatusBarHeight = ImmersionBar.getStatusBarHeight((Activity) o);
             }
         } else if (o instanceof Fragment) {
@@ -36,19 +37,10 @@ class ImmersionDelegate implements Runnable {
                 }
                 mStatusBarHeight = ImmersionBar.getStatusBarHeight((Fragment) o);
             }
-        } else if (o instanceof android.app.Fragment) {
-            if (mImmersionBar == null) {
-                if (o instanceof android.app.DialogFragment) {
-                    mImmersionBar = new ImmersionBar((android.app.DialogFragment) o);
-                } else {
-                    mImmersionBar = new ImmersionBar((android.app.Fragment) o);
-                }
-                mStatusBarHeight = ImmersionBar.getStatusBarHeight((android.app.Fragment) o);
-            }
         }
     }
 
-    ImmersionDelegate(Activity activity, Dialog dialog) {
+    ImmersionDelegate(FragmentActivity activity, Dialog dialog) {
         if (mImmersionBar == null) {
             mImmersionBar = new ImmersionBar(activity, dialog);
             mStatusBarHeight = ImmersionBar.getStatusBarHeight(activity);
