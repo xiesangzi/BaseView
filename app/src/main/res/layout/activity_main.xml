@@ -17,6 +17,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <com.yhms.view.SmoothCheckBox
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30" />
 
     <com.yhms.view.form.EditTextWithLabel
         android:layout_width="match_parent"

@@ -38,4 +38,7 @@
     <color name="remind_color">#f54949</color>
     <color name="text_color">#ffffff</color>
     <color name="progress_color">#41A2A0A0</color>
+
+    <color name="checkbox_color">#FB4846</color>
+    <color name="checkbox_unchecked_color">#DFDFDF</color>
 </resources>
