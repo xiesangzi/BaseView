@@ -216,6 +216,18 @@ public class EditTextWithLabel extends LinearLayout {
         }
     }
 
+    public void setHint(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            formEditView.setHint(str);
+        }
+    }
+
+    public void setLabel(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            formLabelView.setText(str);
+        }
+    }
+
     public TextView getFormLabelView() {
         return formLabelView;
     }
