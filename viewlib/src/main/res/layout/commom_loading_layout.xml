@@ -22,10 +22,10 @@
         android:visibility="visible" />
 
     <TextView
-        android:id="@+id/tv_load"
+        android:id="@+id/tv_load_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="加载中"
+        android:text="加载中..."
         android:textColor="@android:color/white" />
 </LinearLayout>
