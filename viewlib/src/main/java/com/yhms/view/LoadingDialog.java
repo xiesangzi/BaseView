@@ -36,7 +36,9 @@ public class LoadingDialog extends Dialog {
                     dismiss();
                     break;
                 case LOAD_TEXT:
-                    tvLoadTxt.setText(msg.obj.toString());
+                    if (tvLoadTxt == null && msg.obj != null) {
+                        tvLoadTxt.setText(msg.obj.toString());
+                    }
                     break;
                 default:
                     break;
@@ -64,7 +66,7 @@ public class LoadingDialog extends Dialog {
     }
 
     public void setLoadText(String text) {
-        if (TextUtils.isEmpty(text)) {
+        if (tvLoadTxt == null || TextUtils.isEmpty(text)) {
             return;
         }
         Message message = new Message();

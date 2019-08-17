@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
                 .statusBarDarkFont(true).init();
         dialog = new LoadingDialog(this);
         dialog.show();
-        dialog.success();
-        dialog.fail();
-        dialog.setLoadText("342343243");
-        dialog.show();
+//        dialog.success();
+//        dialog.fail();
+//        dialog.setLoadText("342343243");
+//        dialog.show();
     }
 }
