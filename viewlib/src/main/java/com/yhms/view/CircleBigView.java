@@ -12,12 +12,13 @@ import androidx.annotation.Nullable;
 
 
 /**
- * 圆圈扩散自定义View
- * By leo
- * 2019.5.23
+ * 功能描述：圆圈扩散自定义View
+ *
+ * @author 邪桑子
+ * @date 2019/8/17 9:43
+ * @return
  */
-
-public class CirclBigView extends View {
+public class CircleBigView extends View {
 
     //圆圈扩散动画
     private ValueAnimator animator_big;
@@ -73,15 +74,15 @@ public class CirclBigView extends View {
     }
 
 
-    public CirclBigView(Context context) {
+    public CircleBigView(Context context) {
         this(context, null);
     }
 
-    public CirclBigView(Context context, @Nullable AttributeSet attrs) {
+    public CircleBigView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CirclBigView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CircleBigView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         showPaint = new Paint();
         showPaint.setAntiAlias(true);

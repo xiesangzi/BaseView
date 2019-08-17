@@ -28,7 +28,7 @@ import android.view.animation.LinearInterpolator;
  * 2019.5.23
  */
 
-public class SmartLoadingView extends View {
+public class LoadingButton extends View {
 
     /**
      * view的宽度
@@ -214,15 +214,15 @@ public class SmartLoadingView extends View {
     private boolean directionFlag = true;
 
 
-    public SmartLoadingView(Context context) {
+    public LoadingButton(Context context) {
         this(context, null);
     }
 
-    public SmartLoadingView(Context context, AttributeSet attrs) {
+    public LoadingButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SmartLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LoadingButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
         initPaint();
@@ -278,21 +278,21 @@ public class SmartLoadingView extends View {
 
 
     public void init(AttributeSet attrs) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.SmartLoadingView);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.LoadingButton);
         // 设置title
         String title = typedArray
-                .getString(R.styleable.SmartLoadingView_textStr);
+                .getString(R.styleable.LoadingButton_textStr);
         normalString = title;
         buttonString = normalString;
-        errorString = typedArray.getString(R.styleable.SmartLoadingView_errorStr);
+        errorString = typedArray.getString(R.styleable.LoadingButton_errorStr);
 
-        cannotclick_color = typedArray.getColor(R.styleable.SmartLoadingView_cannotclickBg, getResources().getColor(R.color.blackbb));
-        error_color = typedArray.getColor(R.styleable.SmartLoadingView_errorBg, getResources().getColor(R.color.remind_color));
-        normal_color = typedArray.getColor(R.styleable.SmartLoadingView_normalBg, getResources().getColor(R.color.guide_anim));
-        textColor = typedArray.getColor(R.styleable.SmartLoadingView_textColor, getResources().getColor(R.color.text_color));
-        obtainCircleAngle = (int) typedArray.getDimension(R.styleable.SmartLoadingView_cornerRaius, getResources().getDimension(R.dimen.default_corner));
-        textSize = (int) typedArray.getDimension(R.styleable.SmartLoadingView_textSize, getResources().getDimension(R.dimen.dp_14));
-        scrollSpeed = typedArray.getInteger(R.styleable.SmartLoadingView_scrollSpeed, 500);
+        cannotclick_color = typedArray.getColor(R.styleable.LoadingButton_cannotclickBg, getResources().getColor(R.color.blackbb));
+        error_color = typedArray.getColor(R.styleable.LoadingButton_errorBg, getResources().getColor(R.color.remind_color));
+        normal_color = typedArray.getColor(R.styleable.LoadingButton_normalBg, getResources().getColor(R.color.guide_anim));
+        textColor = typedArray.getColor(R.styleable.LoadingButton_textColor, getResources().getColor(R.color.text_color));
+        obtainCircleAngle = (int) typedArray.getDimension(R.styleable.LoadingButton_cornerRaius, getResources().getDimension(R.dimen.default_corner));
+        textSize = (int) typedArray.getDimension(R.styleable.LoadingButton_textSize, getResources().getDimension(R.dimen.dp_14));
+        scrollSpeed = typedArray.getInteger(R.styleable.LoadingButton_scrollSpeed, 500);
     }
 
     public int dip2px(Context context, float dipValue) {
@@ -752,8 +752,8 @@ public class SmartLoadingView extends View {
             isShowLongText = false;
         }
         scrollSize = buttonString.length() * textSize - width + height * 2 / 3;
-        if (circlBigView != null) {
-            circlBigView.setCircleR(0);
+        if (circleBigView != null) {
+            circleBigView.setCircleR(0);
         }
     }
 
@@ -830,20 +830,20 @@ public class SmartLoadingView extends View {
 
     }
 
-    CirclBigView circlBigView = new CirclBigView(getContext());
+    CircleBigView circleBigView = new CircleBigView(getContext());
 
     public void toBigCircle(Animator.AnimatorListener endListener) {
-        circlBigView.setRadius(this.getMeasuredHeight() / 2);
-        circlBigView.setColorBg(normal_color);
+        circleBigView.setRadius(this.getMeasuredHeight() / 2);
+        circleBigView.setColorBg(normal_color);
         int[] location = new int[2];
         this.getLocationOnScreen(location);
-        circlBigView.setXY(location[0] + this.getMeasuredWidth() / 2, location[1]);
-        if (circlBigView.getParent() == null) {
+        circleBigView.setXY(location[0] + this.getMeasuredWidth() / 2, location[1]);
+        if (circleBigView.getParent() == null) {
             ViewGroup activityDecorView = (ViewGroup) ((Activity) getContext()).getWindow().getDecorView();
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            activityDecorView.addView(circlBigView, layoutParams);
+            activityDecorView.addView(circleBigView, layoutParams);
         }
-        circlBigView.startShowAni(endListener);
+        circleBigView.startShowAni(endListener);
         isAnimRuning = false;
     }
 

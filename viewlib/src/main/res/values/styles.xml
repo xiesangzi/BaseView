@@ -7,4 +7,14 @@
         <item name="color_unchecked_stroke">@color/checkbox_unchecked_color</item>
         <item name="color_tick">@android:color/white</item>
     </style>
+
+    <style name="myProgressBarStyleLarge">
+        <item name="android:indeterminateDrawable">@anim/rotate_loading_icon</item>
+        <item name="android:indeterminateDuration">1500</item>
+        <item name="android:minWidth">50dip</item>
+        <item name="android:maxWidth">50dip</item>
+        <item name="android:minHeight">50dip</item>
+        <item name="android:maxHeight">50dip</item>
+    </style>
+    <style name="Theme.HalfScreen" parent="android:style/Theme.Dialog"></style>
 </resources>

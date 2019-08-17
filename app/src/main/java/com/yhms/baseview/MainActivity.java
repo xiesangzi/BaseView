@@ -1,18 +1,14 @@
 package com.yhms.baseview;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yhms.view.LoadingLayout;
+import com.yhms.view.LoadingDialog;
 import com.yhms.view.immersionbar.ImmersionBar;
 
 public class MainActivity extends AppCompatActivity {
-    LoadingLayout vLoading;
-
+    LoadingDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,38 +21,9 @@ public class MainActivity extends AppCompatActivity {
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.colorPrimary)
                 .statusBarDarkFont(true).init();
-        vLoading = LoadingLayout.wrap(this);
-        vLoading.setOnRefreshListener(refreshLayout -> {
-            new AsyncTask<Void, Void, Void>() {
-
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (Exception e) {
-
-                    }
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    vLoading.finishRefresh();
-                }
-            }.execute();
-
-        });
-
-        TextView btn = findViewById(R.id.tv_start);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println(111111111);
-                vLoading.finishRefreshError();
-            }
-        });
-        vLoading.refresh();
-        vLoading.setOnRetryListener(view -> vLoading.refresh());
+        dialog = new LoadingDialog(this);
+        dialog.show();
+        dialog.success();
+        dialog.fail();
     }
 }
