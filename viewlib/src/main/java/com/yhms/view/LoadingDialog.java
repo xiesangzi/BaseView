@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,25 +19,6 @@ public class LoadingDialog extends Dialog {
     private TextView tv_load;
     /** 加载中的图片**/
     private ProgressBar pb_loading;
-    private final int LOAD_SUCC = 0x001;
-    private final int LOAD_FAIL = 0x002;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case LOAD_SUCC:
-                    dismiss();
-                    break;
-                case LOAD_FAIL:
-                    dismiss();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        ;
-    };
 
     public LoadingDialog(Context context) {
         super(context, R.style.Theme_HalfScreen);
@@ -64,7 +44,6 @@ public class LoadingDialog extends Dialog {
         iv_load_result.setVisibility(View.VISIBLE);
         tv_load.setText("加载成功");
         iv_load_result.setImageResource(R.drawable.load_suc_icon);
-        mHandler.sendEmptyMessageDelayed(LOAD_SUCC, 1000);
     }
 
     public void fail() {// 加载失败
@@ -72,6 +51,5 @@ public class LoadingDialog extends Dialog {
         iv_load_result.setVisibility(View.VISIBLE);
         tv_load.setText("加载失败");
         iv_load_result.setImageResource(R.drawable.load_fail_icon);
-        mHandler.sendEmptyMessageDelayed(LOAD_FAIL, 1000);
     }
 }
