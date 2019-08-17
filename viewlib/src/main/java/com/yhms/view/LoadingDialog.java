@@ -65,7 +65,7 @@ public class LoadingDialog extends Dialog {
         pbLoading = findViewById(R.id.pb_loading);
     }
 
-    public void setLoadText(String text) {
+    protected void setLoadText(String text) {
         if (tvLoadTxt == null || TextUtils.isEmpty(text)) {
             return;
         }

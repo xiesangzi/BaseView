@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
 //        dialog.success();
 //        dialog.fail();
-//        dialog.setLoadText("342343243");
+
 //        dialog.show();
     }
 }
