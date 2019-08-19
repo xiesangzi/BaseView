@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.HalfScreen" parent="android:style/Theme.Dialog"></style>
+    <style name="Theme.HalfScreen" parent="android:style/Theme.Light.Panel"></style>
     <style name="SmoothCheckBoxStyle">
         <item name="color_checked">@color/checkbox_color</item>
         <item name="color_unchecked">@android:color/white</item>

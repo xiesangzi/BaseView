@@ -58,8 +58,10 @@ public class LoadingDialog extends Dialog {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setCanceledOnTouchOutside(false);
         //设置参数必须在show之后，不然没有效果
-        WindowManager.LayoutParams params = getWindow().getAttributes();
-        getWindow().setAttributes(params);
+        WindowManager.LayoutParams params = window.getAttributes();
+        window.setAttributes(params);
+        window.setDimAmount(0f);
+
         ivLoadResult = findViewById(R.id.iv_load_result);
         tvLoadTxt = findViewById(R.id.tv_load_txt);
         pbLoading = findViewById(R.id.pb_loading);
