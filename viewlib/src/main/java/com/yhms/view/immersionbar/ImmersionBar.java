@@ -1614,7 +1614,7 @@ public final class ImmersionBar implements ImmersionCallback {
     /**
      * 内部方法无需调用
      */
-    void destroy() {
+    public void destroy() {
         //取消监听
         cancelListener();
         if (mIsDialog) {
