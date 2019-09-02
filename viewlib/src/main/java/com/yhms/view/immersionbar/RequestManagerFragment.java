@@ -1,28 +1,20 @@
 package com.yhms.view.immersionbar;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * @author geyifeng
  * @date 2019/4/11 6:43 PM
  */
-public final class RequestManagerFragment extends Fragment {
+public class RequestManagerFragment extends Fragment {
 
     private ImmersionDelegate mDelegate;
-
-    private static class Holder {
-        private static final RequestManagerFragment INSTANCE = new RequestManagerFragment();
-    }
-
-    static RequestManagerFragment getInstance() {
-        return Holder.INSTANCE;
-    }
 
     public ImmersionBar get(Object o) {
         if (mDelegate == null) {
@@ -31,7 +23,7 @@ public final class RequestManagerFragment extends Fragment {
         return mDelegate.get();
     }
 
-    public ImmersionBar get(FragmentActivity activity, Dialog dialog) {
+    public ImmersionBar get(Activity activity, Dialog dialog) {
         if (mDelegate == null) {
             mDelegate = new ImmersionDelegate(activity, dialog);
         }

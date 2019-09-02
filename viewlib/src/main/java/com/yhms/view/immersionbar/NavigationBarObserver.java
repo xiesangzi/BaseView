@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import static com.yhms.view.immersionbar.Constants.IMMERSION_EMUI_NAVIGATION_BAR_HIDE_SHOW;
 import static com.yhms.view.immersionbar.Constants.IMMERSION_MIUI_NAVIGATION_BAR_HIDE_SHOW;
 
+
 /**
  * 导航栏显示隐藏处理，目前只支持emui和miui带有导航栏的手机
  *

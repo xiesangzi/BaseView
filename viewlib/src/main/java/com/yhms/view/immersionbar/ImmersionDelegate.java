@@ -8,7 +8,6 @@ import android.view.Surface;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * @author geyifeng
@@ -17,16 +16,14 @@ import androidx.fragment.app.FragmentActivity;
 class ImmersionDelegate implements Runnable {
 
     private ImmersionBar mImmersionBar;
-    private int mStatusBarHeight = 0;
     private BarProperties mBarProperties;
     private OnBarListener mOnBarListener;
     private int mNotchHeight;
 
     ImmersionDelegate(Object o) {
-        if (o instanceof FragmentActivity) {
+        if (o instanceof Activity) {
             if (mImmersionBar == null) {
-                mImmersionBar = new ImmersionBar((FragmentActivity) o);
-                mStatusBarHeight = ImmersionBar.getStatusBarHeight((Activity) o);
+                mImmersionBar = new ImmersionBar((Activity) o);
             }
         } else if (o instanceof Fragment) {
             if (mImmersionBar == null) {
@@ -35,15 +32,21 @@ class ImmersionDelegate implements Runnable {
                 } else {
                     mImmersionBar = new ImmersionBar((Fragment) o);
                 }
-                mStatusBarHeight = ImmersionBar.getStatusBarHeight((Fragment) o);
+            }
+        } else if (o instanceof android.app.Fragment) {
+            if (mImmersionBar == null) {
+                if (o instanceof android.app.DialogFragment) {
+                    mImmersionBar = new ImmersionBar((android.app.DialogFragment) o);
+                } else {
+                    mImmersionBar = new ImmersionBar((android.app.Fragment) o);
+                }
             }
         }
     }
 
-    ImmersionDelegate(FragmentActivity activity, Dialog dialog) {
+    ImmersionDelegate(Activity activity, Dialog dialog) {
         if (mImmersionBar == null) {
             mImmersionBar = new ImmersionBar(activity, dialog);
-            mStatusBarHeight = ImmersionBar.getStatusBarHeight(activity);
         }
     }
 
@@ -56,60 +59,25 @@ class ImmersionDelegate implements Runnable {
     }
 
     void onResume() {
-        if (mImmersionBar != null && !mImmersionBar.isFragment() && mImmersionBar.initialized()) {
-            if (OSUtils.isEMUI3_x() && mImmersionBar.getBarParams().navigationBarWithEMUI3Enable) {
-                reinitialize();
-            } else {
-                if (mImmersionBar.getBarParams().barHide != BarHide.FLAG_SHOW_BAR) {
-                    mImmersionBar.setBar();
-                }
-            }
+        if (mImmersionBar != null) {
+            mImmersionBar.onResume();
         }
     }
 
     void onDestroy() {
         mBarProperties = null;
         if (mImmersionBar != null) {
-            mImmersionBar.destroy();
+            mImmersionBar.onDestroy();
             mImmersionBar = null;
         }
     }
 
     void onConfigurationChanged(Configuration newConfig) {
         if (mImmersionBar != null) {
-            if (OSUtils.isEMUI3_x() || Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-                if (mImmersionBar.initialized() && !mImmersionBar.isFragment() && mImmersionBar.getBarParams().navigationBarWithKitkatEnable) {
-                    reinitialize();
-                } else {
-                    fitsWindows();
-                }
-            } else {
-                fitsWindows();
-            }
+            mImmersionBar.onConfigurationChanged(newConfig);
             barChanged(newConfig);
         }
     }
-
-    /**
-     * 重新初始化，适配一些特殊机型
-     */
-    private void reinitialize() {
-        if (mImmersionBar != null) {
-            mImmersionBar.init();
-        }
-    }
-
-    /**
-     * 状态栏高度改变的时候重新适配布局重叠问题
-     */
-    private void fitsWindows() {
-        int statusBarHeight = ImmersionBar.getStatusBarHeight(mImmersionBar.getActivity());
-        if (mStatusBarHeight != statusBarHeight) {
-            mImmersionBar.fitsWindows();
-            mStatusBarHeight = statusBarHeight;
-        }
-    }
-
 
     /**
      * 横竖屏切换监听
