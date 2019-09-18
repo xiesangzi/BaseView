@@ -26,8 +26,10 @@
         android:layout_toLeftOf="@id/form_icon_right"
         android:background="@null"
         android:hint="请输入"
-        android:minHeight="@dimen/dp_40"
-        android:padding="@dimen/dp_2"
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_4"
+        android:paddingRight="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_4"
         android:textColor="@color/h1"
         android:textIsSelectable="true" />
 

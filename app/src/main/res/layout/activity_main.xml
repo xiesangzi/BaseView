@@ -40,7 +40,7 @@
         app:form_direction="horizontal"
         app:form_edit_hint="请输入出生年月"
         app:form_edit_size="@dimen/sp_16"
-        app:form_enabled="true"
+        app:form_enabled="false"
         app:form_label="出生年月"
         app:form_require="true" />
 
