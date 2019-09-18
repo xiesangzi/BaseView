@@ -111,12 +111,9 @@ public class EditTextWithLabel extends LinearLayout {
             formIconRightView.setImageResource(formIconRight);
         }
 
-        formIconRightView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onClickIconRightListener != null) {
-                    onClickIconRightListener.onClick(view);
-                }
+        formIconRightView.setOnClickListener(view -> {
+            if (onClickIconRightListener != null) {
+                onClickIconRightListener.onClick(view);
             }
         });
 
@@ -141,6 +138,8 @@ public class EditTextWithLabel extends LinearLayout {
         formLabelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, formLabelSize);
 
         formEditView.setEnabled(formEnabled);
+        formEditView.setFocusable(formEnabled);
+
         formEditView.setHint(formEditHint);
         formEditView.setTextColor(formEditColor);
         formEditView.setTextSize(TypedValue.COMPLEX_UNIT_PX, formEditSize);
@@ -148,42 +147,39 @@ public class EditTextWithLabel extends LinearLayout {
         if (formEditHeight > defaultHeight * 1.5) {
             formEditView.setGravity(Gravity.TOP);
         }
-        formEditView.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    String label = formLabelView.getText().toString();
-                    SpannableStringBuilder builder = new SpannableStringBuilder(label);
-                    if (label.startsWith("*")) {
-                        ForegroundColorSpan redSpan1 = new ForegroundColorSpan(Color.RED);
-                        builder.setSpan(redSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        formEditView.setOnFocusChangeListener((view, b) -> {
+            if (b) {
+                String label = formLabelView.getText().toString();
+                SpannableStringBuilder builder = new SpannableStringBuilder(label);
+                if (label.startsWith("*")) {
+                    ForegroundColorSpan redSpan1 = new ForegroundColorSpan(Color.RED);
+                    builder.setSpan(redSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-                        ForegroundColorSpan redSpan2 = new ForegroundColorSpan(0xff39A4F8);
-                        builder.setSpan(redSpan2, 1, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    } else {
-                        ForegroundColorSpan redSpan2 = new ForegroundColorSpan(0xff39A4F8);
-                        builder.setSpan(redSpan2, 0, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    }
-                    formLabelView.setText(builder);
-                    formLabelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, (formLabelSize * 9) / 10);
-                    formEditView.setBackground(selectedDrawable);
+                    ForegroundColorSpan redSpan2 = new ForegroundColorSpan(0xff39A4F8);
+                    builder.setSpan(redSpan2, 1, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 } else {
-                    String label = formLabelView.getText().toString();
-                    SpannableStringBuilder builder = new SpannableStringBuilder(label);
-                    if (label.startsWith("*")) {
-                        ForegroundColorSpan redSpan1 = new ForegroundColorSpan(Color.RED);
-                        builder.setSpan(redSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                        ForegroundColorSpan redSpan2 = new ForegroundColorSpan(formLabelColor);
-                        builder.setSpan(redSpan2, 1, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    } else {
-                        ForegroundColorSpan redSpan2 = new ForegroundColorSpan(formLabelColor);
-                        builder.setSpan(redSpan2, 0, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    }
-                    formLabelView.setText(builder);
-                    formLabelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, formLabelSize);
-                    formEditView.setBackground(unSelectedDrawable);
+                    ForegroundColorSpan redSpan2 = new ForegroundColorSpan(0xff39A4F8);
+                    builder.setSpan(redSpan2, 0, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
+                formLabelView.setText(builder);
+                formLabelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, (formLabelSize * 9) / 10);
+                formEditView.setBackground(selectedDrawable);
+            } else {
+                String label = formLabelView.getText().toString();
+                SpannableStringBuilder builder = new SpannableStringBuilder(label);
+                if (label.startsWith("*")) {
+                    ForegroundColorSpan redSpan1 = new ForegroundColorSpan(Color.RED);
+                    builder.setSpan(redSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                    ForegroundColorSpan redSpan2 = new ForegroundColorSpan(formLabelColor);
+                    builder.setSpan(redSpan2, 1, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else {
+                    ForegroundColorSpan redSpan2 = new ForegroundColorSpan(formLabelColor);
+                    builder.setSpan(redSpan2, 0, label.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+                formLabelView.setText(builder);
+                formLabelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, formLabelSize);
+                formEditView.setBackground(unSelectedDrawable);
             }
         });
     }
